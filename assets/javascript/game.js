@@ -8,7 +8,7 @@ document.onkeydown = function(guess) {
 
 	var userGuess = guess.key;
 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-	var letters = new Array();
+	var letters = new Array(); //letters the user has picked
 
 	if (userGuess == computerGuess) {
 		wins++;
@@ -24,7 +24,7 @@ document.onkeydown = function(guess) {
 	}
 }
 
-
+//Inserts variable values into DOM
 var winsHTML = "Wins: " + wins;
 document.querySelector("#wins").innerHTML = winsHTML;
 
