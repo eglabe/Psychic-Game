@@ -8,23 +8,36 @@ document.onkeydown = function(guess) {
 
 	var userGuess = guess.key;
 	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-	var letters = [];
+	var letters = new Array();
 
 	if (userGuess == computerGuess) {
 		wins++;
 		//game resets
 	}
+		else {
+			guessLeft--;
+			letters.push(guess.key);//pushes all of the letters
 
-	else {
-		guessLeft--;
-		letters.push(guess.key);
+	if (guessLeft == 0) {
+		losses++;
+		//game resets
+	}
 }
 
-var html = "Wins: " + wins + 
-	"<br> Losses: " + losses + 
-	"<br> Guesses Left: " + guessLeft + 
-	"<br> Letters Guessed: " + letters;
-document.querySelector("div").innerHTML = html;
+
+var winsHTML = "Wins: " + wins;
+document.querySelector("#wins").innerHTML = winsHTML;
+
+var lossesHTML = "Losses: " + losses;
+document.querySelector("#losses").innerHTML = lossesHTML;
+
+var leftHTML = "Guesses Left : " + guessLeft;
+document.querySelector("#left").innerHTML = leftHTML;
+
+var lettersHTML = "Letters Guessed: " + letters;
+document.querySelector("#letters").innerHTML = lettersHTML;
+
+
 
 //console.log(userGuess);
 //console.log(computerGuess);
@@ -43,7 +56,7 @@ console.log(letters);
 	//guessLeft--
 	//letters is logged
 
-	//if losses = 0
+	//if guessLeft = 0
 		//game restarts
 
 
