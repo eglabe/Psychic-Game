@@ -6,6 +6,11 @@ var letters = []; //letters guessed
 var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+var validChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+		console.log(computerGuess);
+		console.log(guessLeft);
+
 function reset () {
 	guessLeft = 9;
 	letters = [];
@@ -16,40 +21,27 @@ function reset () {
 	document.querySelector("#left").innerHTML = leftHTML;
 	document.querySelector("#letters").innerHTML = lettersHTML;
 
-	console.log(computerGuess);
+			console.log(computerGuess);
+
 }
 
 //the function which runs when user pushes a key
 document.onkeydown = function(guess) {
 
-	var userGuess = guess.key;
+	var userGuess = guess.keyCode;
 
-	//if the user guesses correctly
-	if (userGuess == computerGuess) {
-		wins++;
-
-		alert("You won! The letter was " + computerGuess + ".");
-
-		reset();
+	if (userGuess == validChoice){
+		alert(success);
 	}
 
-	else {
-		
-		//if the user guesses an unguessed letter
-		if (letters.indexOf(userGuess) == -1) {
-				letters.push(guess.key);
-				guessLeft--;
-		}
+	(guess.keyCode >= 65 && guess.keyCode <= 90);
 
-		//if the user reaches the guess limit and loses
-		if (guessLeft == 0) {
-			losses++;
+	if  (userGuess == computerGuess) {
 
-			alert("You lost...the letter was " + computerGuess + ".");
-
-			reset();
-		}
+		alert("you won");
 	}
+
+
 
 	//Inserts variable values into DOM
 	var winsHTML = "Wins: " + wins;
@@ -65,3 +57,8 @@ document.onkeydown = function(guess) {
 	document.querySelector("#letters").innerHTML = lettersHTML;
 
 }
+
+
+
+
+
