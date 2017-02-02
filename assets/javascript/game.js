@@ -22,46 +22,48 @@ function reset () {
 //the function which runs when user pushes a key
 document.onkeydown = function(guess) {
 
-	var userGuess = guess.key;
+	if (guess.keyCode >= 65 && guess.keyCode <= 90) {
 
-	//if the user guesses correctly
-	if (userGuess == computerGuess) {
-		wins++;
+		var userGuess = guess.key;
+		//if the user guesses correctly
+		if (userGuess == computerGuess) {
+			wins++;
 
-		alert("You won! The letter was " + computerGuess + ".");
-
-		reset();
-	}
-
-	else {
-		
-		//if the user guesses an unguessed letter
-		if (letters.indexOf(userGuess) == -1) {
-				letters.push(guess.key);
-				guessLeft--;
-		}
-
-		//if the user reaches the guess limit and loses
-		if (guessLeft == 0) {
-			losses++;
-
-			alert("You lost...the letter was " + computerGuess + ".");
+			alert("You won! The letter was " + computerGuess + ".");
 
 			reset();
-		}
+		} else {
+		
+			//if the user guesses an unguessed letter
+			if (letters.indexOf(userGuess) == -1) {
+					letters.push(guess.key);
+					guessLeft--;
+			}
+
+			//if the user reaches the guess limit and loses
+			if (guessLeft == 0) {
+				losses++;
+
+				alert("You lost...the letter was " + computerGuess + ".");
+
+				reset();
+			}
 	}
 
-	//Inserts variable values into DOM
-	var winsHTML = "Wins: " + wins;
-	document.querySelector("#wins").innerHTML = winsHTML;
+		//Inserts variable values into DOM
+		var winsHTML = "Wins: " + wins;
+		document.querySelector("#wins").innerHTML = winsHTML;
 
-	var lossesHTML = "Losses: " + losses;
-	document.querySelector("#losses").innerHTML = lossesHTML;
+		var lossesHTML = "Losses: " + losses;
+		document.querySelector("#losses").innerHTML = lossesHTML;
 
-	var leftHTML = "Guesses Left : " + guessLeft;
-	document.querySelector("#left").innerHTML = leftHTML;
+		var leftHTML = "Guesses Left : " + guessLeft;
+		document.querySelector("#left").innerHTML = leftHTML;
 
-	var lettersHTML = "Letters Guessed: " + letters;
-	document.querySelector("#letters").innerHTML = lettersHTML;
+		var lettersHTML = "Letters Guessed: " + letters;
+		document.querySelector("#letters").innerHTML = lettersHTML;
+	} else {
+		alert("Please pick a letter :P");
+	}
 
 }
